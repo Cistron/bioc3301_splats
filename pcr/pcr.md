@@ -20,7 +20,7 @@ Let's recall a few key concepts from the lecture. Primers should generally have 
     
     The Wallace rule can be used roughly to estimate melting temperatures for relatively short oligonucleotides of 14-20bp (T$_m$ = 4°C/GC + 2°C/AT). However, modern approaches employ more complicated methods using the nearest neighbour thermodynamic theory (more information can be found on the [description page of IDT's OligoAnalyzer](https://www.idtdna.com/calc/Analyzer/Home/Definitions)).
     
-    The annealing temperature (T$_a$) is often set 5°C below the lower T$_m$ of the primer pair, or calculated as below, though ideally is confirmed experimentally.
+    The annealing temperature (T$_a$) is often set 5°C below the lower T$_m$ of the primer pair, or calculated as shown below. Though ideally is confirmed experimentally.
     
     $$
     T_a = (0.3 \times T_{m(primer)} + 0.7\times T_{m(product)}) – 14.9
@@ -73,7 +73,7 @@ forward: CACCAGGCTGTCCCATACTC
 reverse: TAAGGGGCTGAGGTGAGAGA
 ```
 
-The NCBI-tool [Primer-BLAST](https://www.ncbi.nlm.nih.gov/tools/primer-blast/) provides an easy way to check primers. It combines BLAST's global sequence alignment capabilities with [Primer3](http://primer3.ut.ee/); a software designed to pick primer pairs according to an elaborate list input parameters - including some of the discussed core primer properties.
+The NCBI-tool [Primer-BLAST](https://www.ncbi.nlm.nih.gov/tools/primer-blast/) provides an easy way to check primers. It combines BLAST's global sequence alignment capabilities with [Primer3](http://primer3.ut.ee/); a software designed to pick primer pairs according to an elaborate list of input parameters - including some of the discussed core primer properties.
 
 ---
 
@@ -111,7 +111,7 @@ In fully processed mRNAs and thus its cDNA, introns are excised during splicing,
 
 An alternative strategy is to place a primer directly onto the exon-exon junction site, which prevents specific annealing on gDNA.
 
-Before designing primers, it is a good idea to get a better idea of your target gene's exon intron structure and particularly its main transcripts. Do you want to target all splice variants, or just a specific one?
+Before designing primers, it is a good idea to get a better idea of your target gene's exon-intron structure and particularly its main transcripts. Do you want to target all splice variants, or just a specific one?
 
 You can explore the genomic locus of your target gene using a genome browser, such as [Ensembl](http://www.ensembl.org/index.html) (or [UCSC Genome Browser](https://genome.ucsc.edu/)) .
 
@@ -131,13 +131,13 @@ Proportion of Crx cDNA sequence
 481 agcaacagca gcccccgggg gcacagacca aggctcgtcc tgcgaagagg aaggcaggga
     ...
 ```
-Alternatively, targets, included and excluded regions (e.g. an exon that isn't shared between all transcripts), exon-exon junction can be defined by nucleotide position.
+Alternatively, targets, included and excluded regions (e.g. an exon that isn't shared between all transcripts), as well as exon-exon junctions that should be overlapped by the primers can be defined by nucleotide position.
 
 ![Screenshot of part of the Primer3 interface](./primer3_targetting.png)
 
 ---
 
-**Exercise**: Now that you are familiar with the *Crx* locus and its transcripts, let's get our hands dirty to design a few new RT-PCR primer sets with a shorter amplicon of 100-300bp. Let the primers overlap an exon-exon junction and the amplicon span an intron.
+**Exercise**: Now that you are familiar with the *Crx* locus and its transcripts, let's get our hands dirty to design a few new RT-PCR primer sets with a shorter amplicon size of 100-300bp. Let the primers overlap an exon-exon junction and the amplicon span an intron.
 
 Go the more challenging route and use the reference sequences and Primer3 first. Play with the settings (each serves as a link to the manual explanation). Then try again using the Primer-BLAST interface and see whether you get different results.
 
@@ -168,7 +168,7 @@ Abundance of charged and polar residues improves solubility
 good for antibody-based detection
 ```
 
-When designing primers for a specific protein target, we cannot rely on algorithms (yet?) to pick the correct sequences. Starting off with a cDNA or plasmid with the complete protein coding sequence, you should consider the following:
+When designing primers for a specific protein target, we cannot rely on algorithms (yet) to pick the correct sequences. Starting off with a cDNA or plasmid with the complete protein coding sequence, you should consider the following:
 
 1.  **Is the expression system pro- or eukaryotic?**
 
@@ -193,7 +193,7 @@ In order to manipulate sequence files, we need a sequence editor, such as the [c
 
 ---
 
-If you imported all the GenBank annotation features from NCBI, you should be greeted by purple arrow highlighting the *ADORA1* coding sequence (cds). The cds is preceded by decent Kozak motif (`CCCGCCATGC`) and ends with an amber stop codon (`TAG`).
+You should be greeted by a purple arrow highlighting the *ADORA1* coding sequence (cds). The cds is preceded by decent Kozak motif (`CCCGCCATGC`) and ends with an amber stop codon (`TAG`).
 
 In this example, we shall introduce a C-terminal FLAG-tag. The design of the final amplicon should be as follows:
 
@@ -202,7 +202,7 @@ spacer | RE-site 1 | Kozak | ADORA1 cds w/o stop | FLAG w/ stop | RE-site 2 | sp
 ```
 
 * In order to clone the amplicon into the pcDNA3.1(+) expression vector, we need to include restriction endonuclease (RE) sites in each of the primers.
-* An overhang of 3-4 bp end is required at the 5' (spacer) of each primer to provide sufficient space for the RE to work efficiently; i.e. DNA for the RE to bind to.
+* An overhang of 3-4 bp end (e.g. ATAT) is required at the 5' (spacer) of each primer to provide sufficient space for the RE to work efficiently; i.e. DNA for the RE to bind to.
 * The forward primer will include the original Kozak sequence.
 * The reverse primer will exclude the original stop codon, but introduce a new one following the FLAG sequence.
 
@@ -232,28 +232,65 @@ Unfortunately, this is were SnapGene Viewer's free functionality ends. In order 
 
 ---
 
-**Exercise:** Install SerialCloner and copy & paste the whole GenBank reference sequence entry for *ADORA1* into the new sequence field. The menu point 'Function > Run a PCR' opens up another dialogue into which you can paste the primer sequences you generated in SnapGene Viewer. Make sure you paste the annealing and non-annealing part into the correct entry-boxes.
+**Exercise:** 
 
-On the newly generated PCR fragment, 'Edit > Find' opens a side-menu with a rider called 'ORFs'. Check for an uninterrupted ORF running from the Kozak ATG all the way to the stop codon downstream to the FLAG-tag.
+1. Install SerialCloner and copy & paste the whole GenBank reference sequence entry for *ADORA1* into the new sequence field. The menu point 'Function > Run a PCR' opens up another dialogue into which you can paste the primer sequences you generated in SnapGene Viewer. Make sure you paste the annealing and non-annealing part into the correct entry-boxes.
+
+2. On the newly generated PCR fragment, 'Edit > Find' opens a side-menu with a rider called 'ORFs'. Check for an uninterrupted ORF running from the Kozak ATG all the way to the stop codon downstream to the FLAG-tag.
+
+3. Finally, import pcDNA3.1(+) into SerialCloner as well and virtually clone your PCR fragment into the vector. This will highlight any last problems with restriction enzymes, e.g. cutting where they shouldn't or using them in the wrong orientation.
+
+4. Whilst tags are small and often unobtrusive to protein function, it helps to have an alternative strategy. The C-terminus of the Adenosine receptor 1, being a GPCR, is located in the cytoplasm, while the N-terminus will face the extracellular medium. Design another set of primers to apply the FLAG-tag to the N-terminus.
+
+    
 
 --- 
 
-<!-- methylation sites -->
+## Designing primers to create a fusion protein
 
-<!--cleave sites-->
+Creating a fusion protein can be a task of varying difficulty. Using vectors, which already carry one of the two proteins reduces the complexity. 
 
-<!-- now make N-terminal tag -->
+In the following example, we want to create a couple of fusion proteins to run a [Bimolecular Complementation assay (BiFC)](https://en.wikipedia.org/wiki/Bimolecular_fluorescence_complementation). Similar to FRET or BRET, a BiFC assay is used to study protein-protein interactions. It is based on the re-complementation of GFP (and it's derivates), just like the lacZ' assay is based on re-complementation: putting two non-functional pieces of protein in proximity makes a whole functional complex again.
 
+![Bimolecular Fluorescence complementation](bifc.png)
 
-* [x] find a published primer
-* [x] RT-PCR primers with Primer-Blast
-* [x] Fusion protein with a H6, Myc or HA tag
-    * 4nt overhang to include restriction enzymes
-    * ORF alignment for fusion proteins
-    * Stop codon and polyA tag
-    * linker shouldn't "offend"
-    * Kozak or Shine-Dalgarno sequence
-    * methylation sites in RE sites
+Amongst several available plasmids, we chose [pBiFC-VC155](https://www.addgene.org/22011/), which contains the C-terminal portion of Venus (a yellow variant of green fluorescent protein) from amino acid 155 onwards, and [pBiFC-VN173](https://www.addgene.org/22010/), which contains the the first 172 amino acids of Venus.
 
-* [ ] Fusion protein with GFP already present in vector
-* [ ] Use Golden Gate cloning/assembly (type IIS RE) for protein engineering
+The structure of both of these vectors is very similar. A promoter from cytomegalovirus (pCMV, a beta herpes-virus) is followed by either an HA or a FLAG tag, which is in-line with the Venus fragments and coincides with the MCS.
+
+The actual ORF/cds for VN173 starts with `atggtgagcaagggc`, whilst VC155 starts with `atgaaccacgacaag`. These ORFs can also be found by using SerialCloners Find-function and matching the ORF size with the insert size described on the Addgene plasmid description pages (alternatively, you can figure out how many nucleotides it takes to encode 172 amino acids of VN173, or 84 amino acids of VC155).
+
+We would like to clone *ADORA1* into pBiFC-VN173 and *AODRA2* into pBiFC-VC155. For both of these GPCRs, the C-terminus is in the cytosol. Consequently, the Venus part of the needs to be added to the C-terminus.
+
+The challenging part is to align the receptor gene ORF with the Venus-fragment ORF. This requires careful studying of the multiple cloning site to determine which RE to use and adding alignment nucleotides into the primers where necessary.
+
+You also need to pay attention to the 'linker' of seemingly random codons, which forms between the receptor and the fluorescent protein. You want to avoid rare amino acids such as proline (leads to kink in the chain, reduces linker flexibilty) or tryptophan (bulky an hydrophobic) or stretches of charged amino acids.
+
+---
+
+**Exercise:** Design primers for an ADORA1-VN173 or ADORA2-VC155 fusion protein, made in the corresponding pBiFC vector.
+
+---
+
+## Advanced: Golden Gate cloning for protein engineering
+
+Type IIS restriction endonucleases, unlike 'traditional' Type II RE, cleave outside their recognition sequence, which is not palindromic and indicates the direction.
+
+```
+Traditional Type II RE - HindIII
+A|A G C T T
+T T C G A|A
+
+Type IIS RE - BsaI
+|N N N N G A G A C C
+ N N N N|C T C T G G
+
+cleavage sites indicated by |
+```
+Because the recognition sequence can be cleaved off by the TypeIIS RE itself, it can create sticky ends that leave no seam in complex cloning assemblies.
+
+---
+
+**Exercise:**  Learn more about Golden Gate cloning. How could this be used to introduce a tag or a larger protein into one of the intracellular loops of the Adenosine receptor 1?
+
+---
