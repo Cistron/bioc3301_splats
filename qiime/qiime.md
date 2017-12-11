@@ -369,7 +369,7 @@ An overview of the results are compiled in an `index.html` file. Again, you will
 scp -r aristotle:~/test_50k/cdout/ /path/to/destination-folder/
 ```
 
-![QIIME core diversity analyses index html](/images/2017/12/cdout_index_html.png)
+![QIIME core diversity analyses index html](cdout_index_html.png)
 
 Explore the output from the diversity analyses and reference the explanation of diversity metrics and distance scores above for a better understanding. Note: the taxa tables are likely not accurate far below phylum level, as the variable region 4 of 16S rRNA does not necessarily provide enough resolution.
 
