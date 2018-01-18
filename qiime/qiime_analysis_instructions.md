@@ -49,14 +49,14 @@
     ```
     vim split.pbs
     ```
-    Edit the file accordingly:
+    Edit the file to match the following below (you can choose a different job name for `#PBS -N`):
     ```bash
     #!/bin/bash --login
     #PBS -l walltime=01:00:00
     #PBS -l select=1:ncpus=2
     #PBS -N 2017_18_ssc_splitting_libraries
     #PBS -A d411-training
-    # change to the directory that the job was submitted from
+    # the following command changes the directory to the directory that the job was submitted from
     cd $PBS_O_WORKDIR
     # loading miniconda2
     module load miniconda/python2
@@ -75,13 +75,14 @@
     ```
     vim otu.pbs
     ```
+    Edit the file to match the following below (you can choose a different job name for `#PBS -N`):  
     ```bash
     #!/bin/bash --login
     #PBS -l walltime=01:00:00
     #PBS -l select=1:ncpus=32
     #PBS -N 2017_18_ssc_picking_otus
     #PBS -A d411-training
-    # change to the directory that the job was submitted from
+    # the following command changes the directory to the directory that the job was submitted from
     cd $PBS_O_WORKDIR
     # loading miniconda2
     module load miniconda/python2
@@ -115,10 +116,11 @@
     ssc.17.18.44: 222190.0
     ssc.17.18.69: 257628.0
     ```
-10. Write another batch script to analyse sample diversity. The `-e` parameter determines the sampling depth. If `e` is set larger than a samples OTU count, it won't be included in the analysis. It is thus a tradeoff of analysis quality and amount of samples in the analysis. Below, the lowest count was used to set `e`.
+12. Write another batch script to analyse sample diversity. The `-e` parameter determines the sampling depth. If `e` is set larger than a samples OTU count, it won't be included in the analysis. It is thus a tradeoff of analysis quality and amount of samples in the analysis. In the example output above the lowest count was `23961` and was used to set `e` in the script below.
     ```bash
     vim div.pbs
     ```
+    Edit the file to match the following below. You can choose a different job name for `#PBS -N`. Adjust `e` to the lowest output obtained in your output from the OTU-table:
     ```bash
     #!/bin/bash --login
     #PBS -l walltime=01:00:00
@@ -143,7 +145,7 @@
     qsub div.pbs
     ```
     Should the script not run to completion (e.g. no `index.html` in the `cdout` folder), just re-submit the `div.pbs` script. The `--recover_from_failure` should allow it to take off from where it failed.
-11. Once finished, open a local termianl and copy the output directory to your local machine to interrogate the data.
+13. Once finished, open a local terminal and copy the output directory to your local machine to interrogate the data.
     ```bash
     scp -r cirrus:~/ssc/cdout/ ./cdout/
     ```
