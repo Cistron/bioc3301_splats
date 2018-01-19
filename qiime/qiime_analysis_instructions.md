@@ -200,6 +200,6 @@
     Should the script not run to completion for other reasons (no `index.html` in the `cdout` folder), just re-submit the `div.pbs` script. The `--recover_from_failure` should allow it to take off from where it failed.
 24. Once `div.pbs` has finished, you can copy its output to your local machine to interrogate. On your other (local) terminal use secure-copy to download the data.
     ```bash
-    scp -r username@login.cirrus.ac.uk:~/ssc/cdout/* ./cdout/
+    scp -r username@login.cirrus.ac.uk:~/ssc/cdout ./cdout/
     ```
     The `index.html` file provides access to taxa-tables and bar-charts, alpha diversity rarefaction plots and 3D PCoA plots of sample distances.
