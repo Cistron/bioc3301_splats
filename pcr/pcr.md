@@ -8,7 +8,7 @@ Let's recall a few key concepts from the lecture. Primers should generally have 
 
   1. **Sufficient length to guarantee specific binding.** Shorter primers bind more easily to the template during the annealing stage, whilst longer primers confer more specificity. Generally the complementary regions of your primers should be 18-24 bases long.
 
-  A primer with a length of 18nt, will randomly bind once every $4^{18}$ bases, or roughly once very 68 billion nucleotides. Due to conversation amongst genes, this isn't quite as straightforward, but we will learn how to test for primer specificity later.
+    A primer with a length of 18nt, will randomly bind once every $4^{18}$ bases, or roughly once very 68 billion nucleotides. Due to conversation amongst genes, this isn't quite as straightforward, but we will learn how to test for primer specificity later.
 
 2. **40-60% G/C content.** GC-bonds are stronger than AT bonds, and a high GC-content can lead to mis-pairing and therefore reduced specificity. Whenever possibly you should avoid GC-rich regions. If unavoidable, GC-rich specific polymerases and addition of DMSO to your reaction may increase the PCR's yield.
 
@@ -182,6 +182,8 @@ When designing primers for a specific protein target, we cannot rely on algorith
     * For an N-terminal tag the Kozal/Shine-Dalgarno sequence has to be moved upstream.
     * Either way, the tag's open reading frame (ORF) needs to be aligned with the protein's ORF.
 
+**NOTE: This tutorial is being reworked. Use [benchling.com](https://benchling.com/) instead of SnapGene Viewer and SerialCloner**
+
 In order to manipulate sequence files, we need a sequence editor, such as the [commercial and somewhat limited SnapGene Viewer](http://www.snapgene.com/products/snapgene_viewer/).
 
 ---
@@ -227,6 +229,8 @@ spacer | RE-site 1 | Kozak | ADORA1 cds w/o stop | FLAG w/ stop | RE-site 2 | sp
 5. As with the forward primer, add the FLAG-tag, a stop codon, the RE site and an ATAT spacer. Should you reverse complement the insertions? Depending on the compatible region chosen, you will end up with a primer lengths of 60+ nucleotides.
 
 ---
+
+**NOTE: This tutorial is being reworked. Use [benchling.com](https://benchling.com/) instead of SnapGene Viewer and SerialCloner**
 
 Unfortunately, this is were SnapGene Viewer's free functionality ends. In order to carry out a virtual PCR (or just copy & paste sequences) we need to use [SerialCloner](http://serialbasics.free.fr/Serial_Cloner-Download.html).
 
